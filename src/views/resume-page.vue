@@ -9,6 +9,7 @@
       <h2>Experiences</h2>
       <ol>
         <li
+          class="li-pointer"
           v-for="(data, index) in experiences"
           @click="showDetail(data.show, index)"
           :key="data.id"
@@ -42,15 +43,15 @@
     </div>
     <div class="contact-form">
       <h2>Contact Me</h2>
-      <form>
+      <form @submit="onSubmit">
         <p>Nama</p>
         <input v-model="contact.namecontact" required />
         <p>Email</p>
-        <input v-model="contact.email" required />
+        <input type="email" v-model="contact.email" required />
         <p>Note</p>
         <textarea v-model="contact.note" cols="30" rows="10" required />
         <br />
-        <button @click="onSubmit">Submit</button>
+        <button>Submit</button>
       </form>
     </div>
   </div>
@@ -102,7 +103,7 @@ export default {
     showDetail(experience, index) {
       this.experiences[index].show = !experience;
     },
-    onSubmit(e) {
+    onSubmit() {
       if (
         !this.contact.namecontact ||
         !this.contact.email ||
@@ -135,6 +136,10 @@ export default {
 
 h2 {
   font-weight: 500;
+}
+
+.li-pointer:hover {
+  cursor: pointer;
 }
 
 .name-description {
