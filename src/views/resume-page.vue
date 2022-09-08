@@ -43,7 +43,7 @@
     </div>
     <div class="contact-form">
       <h2>Contact Me</h2>
-      <form @submit="onSubmit">
+      <form @submit.prevent="onSubmit" ref="form">
         <p>Nama</p>
         <input v-model="contact.namecontact" required />
         <p>Email</p>
@@ -120,6 +120,8 @@ export default {
           " regarding " +
           this.contact.note
       );
+      this.$refs.form.reset()
+
     },
   },
 };
